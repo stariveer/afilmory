@@ -5,6 +5,8 @@
 ```
 rm -rf apps/web/dist
 ln -s ../../../afilmory-dist ./apps/web/dist
+
+ln -s ../images/public/photos ./photos
 ```
 
 ## 构建命令
