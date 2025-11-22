@@ -11,8 +11,9 @@ i18n
   .use(LanguageDetector)
   .use(initReactI18next)
   .init({
+    lng: 'zh-CN', // 强制使用简体中文
     fallbackLng: {
-      default: ['en'],
+      default: ['zh-CN'], // 回退语言也设置为简体中文
     },
     defaultNS: 'app',
     resources,
