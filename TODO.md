@@ -1,1 +1,9 @@
-http://local.trainspott.in:9999/ 这个路径部署的服务是我通过构建网站构建静态网站生成的内容包括了缩略图和转写到静态的HTML里面的数据然后我发现一个问题就是当我通过拖动滚动条到页面最底部之后再去点击某一张图片就是靠近底部的某一张图片这样页面会进入图片详情的展示界面 在这个界面下面,本来希望的是只加载横向滚动条出现在这个视图内的这十几张或者是几十张图片的缩略图但是通过浏览器请求来查看,貌似加载了上千张图片的缩略图这是不符合预期的, 你来帮我修复这个问题必要的时候你可以调用Chrome DevTools MCP来查看和操作这个网页, 网站我已经通过 python -m http.server 9999 --bind 127.0.0.1 启动了,改完代码只需要  pnpm --filter web build 再刷新页面就能看到更新
+以下这些图片都是根据logo.jpg自动生成的问题是在于logo.jpg它没有透明图层所以说生成的这些图片一个白色背景很丑又没有什么办法比如说通过logo.png生成带透明图层的这些目标文件然后保留透明的效果你看看这个工作流能不能改一下
+
+apps/web/public/android-chrome-192x192.png 
+apps/web/public/android-chrome-512x512.png 
+apps/web/public/apple-touch-icon.png 
+apps/web/public/favicon-16x16.png 
+apps/web/public/favicon-32x32.png 
+apps/web/public/favicon-48x48.png 
+apps/web/public/favicon.ico
