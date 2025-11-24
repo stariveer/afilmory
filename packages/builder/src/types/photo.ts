@@ -170,6 +170,11 @@ export interface PickedExif {
   MicroVideoVersion?: Tags['MicroVideoVersion']
   MicroVideoOffset?: Tags['MicroVideoOffset']
   MicroVideoPresentationTimestampUs?: Tags['MicroVideoPresentationTimestampUs']
+
+  // Tags
+  Subject?: string[] | string
+  Keywords?: string[] | string
+  HierarchicalSubject?: string[] | string
 }
 
 export interface ThumbnailResult {

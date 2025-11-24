@@ -135,6 +135,9 @@ const pickKeys: Array<keyof Tags | (string & {})> = [
   'MicroVideoVersion',
   'MicroVideoOffset',
   'MicroVideoPresentationTimestampUs',
+  'Subject',
+  'Keywords',
+  'HierarchicalSubject',
 ]
 function handleExifData(exifData: Tags): PickedExif {
   const date = {
