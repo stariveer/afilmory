@@ -19,7 +19,7 @@ import PKG from '../../package.json'
 import { siteConfig } from '../../site.config'
 import { astPlugin } from './plugins/vite/ast'
 import { createDependencyChunksPlugin } from './plugins/vite/deps'
-import { createFeedSitemapPlugin } from './plugins/vite/feed-sitemap'
+// import { createFeedSitemapPlugin } from './plugins/vite/feed-sitemap'
 import { localesJsonPlugin } from './plugins/vite/locales-json'
 import { manifestInjectPlugin } from './plugins/vite/manifest-inject'
 import { ogImagePlugin } from './plugins/vite/og-image-plugin'
@@ -137,7 +137,7 @@ const staticWebBuildPlugins: PluginOption[] = [
     siteName: siteConfig.name,
     siteUrl: siteConfig.url,
   }),
-  createFeedSitemapPlugin(siteConfig),
+  // createFeedSitemapPlugin(siteConfig),
   createHtmlPlugin({
     minify: {
       collapseWhitespace: true,
