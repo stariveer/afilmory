@@ -1,19 +1,29 @@
 {
   "version": 1,
-  "include": ["/*"],
+  "include": [
+    "/*"
+  ],
   "exclude": [
     "/thumbnails/*",
+    "/assets/*",
+    "/vendor/*",
     "/*.ico",
     "/*.png",
     "/*.jpg",
     "/*.jpeg",
     "/*.gif",
     "/*.svg",
-    "/*.css",
+    "/*.webp",
+    "/*.avif",
+    "*.css",
     "/manifest.webmanifest",
-    "/*.js",
+    "/site.webmanifest",
+    "*.js",
     "/*.json",
     "/*.xml",
-    "/*.txt"
+    "/*.txt",
+    "/registerSW.js",
+    "/sw.js",
+    "/workbox-*.js"
   ]
 }

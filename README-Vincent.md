@@ -21,4 +21,10 @@ pnpm --filter @afilmory/web build;
 # 3. 增量构建缩略图和 manifest和 web
 pnpm run build:manifest;
 pnpm --filter @afilmory/web build;
+
+# 4. 本地查看 
+cd ~/code/afilmory/apps/web/dist; 
+python -m http.server 9999 --bind 127.0.0.1;
+
+open http://local.trainspott.in:9999/
 ```
