@@ -9,9 +9,9 @@ export const migrateV9ToV10: ManifestMigrator = (raw: AfilmoryManifest, _ctx: Mi
   raw.data.forEach((item) => {
     if (!item.exif) return
     if ((item.exif.GPSAltitudeRef as any) === 'Below Sea Level') {
-      item.exif.GPSAltitudeRef = 1
+      item.exif.GPSAltitudeRef = '1' as any
     } else {
-      item.exif.GPSAltitudeRef = 0
+      item.exif.GPSAltitudeRef = '0' as any
     }
   })
   ;(raw as any).version = 'v10'
