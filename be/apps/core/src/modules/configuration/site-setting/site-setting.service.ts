@@ -309,7 +309,6 @@ interface SiteConfigAuthor {
 interface SiteConfigSocial {
   twitter?: string
   github?: string
-  rss?: boolean
 }
 
 interface SiteConfigFeed {
@@ -397,21 +396,6 @@ function parseJsonStringArray(value: string | null | undefined): string[] | unde
   }
 }
 
-function parseBooleanString(value: string | null | undefined): boolean | undefined {
-  const normalized = normalizeStringToUndefined(value)
-  if (!normalized) {
-    return undefined
-  }
-
-  if (normalized === 'true') {
-    return true
-  }
-  if (normalized === 'false') {
-    return false
-  }
-  return undefined
-}
-
 function buildSocialConfig(values: SiteSettingValueMap): SiteConfig['social'] | undefined {
   const social: NonNullable<SiteConfig['social']> = {}
 
@@ -422,11 +406,6 @@ function buildSocialConfig(values: SiteSettingValueMap): SiteConfig['social'] | 
   assignString(values['site.social.github'], (value) => {
     social.github = value
   })
-
-  const rss = parseBooleanString(values['site.social.rss'])
-  if (typeof rss === 'boolean') {
-    social.rss = rss
-  }
 
   return Object.keys(social).length > 0 ? social : undefined
 }

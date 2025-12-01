@@ -11,7 +11,12 @@ import type {
 import type { UiSchema } from 'core/modules/ui/ui-schema/ui-schema.type'
 
 import type { BuilderStorageProvider } from '../setting/storage-provider.utils'
-import type { BillingPlanSettingField, SystemSettingDbField, SystemSettingField } from './system-setting.constants'
+import type {
+  BillingPlanSettingField,
+  SystemSettingDbField,
+  SystemSettingField,
+  SystemSettingKey,
+} from './system-setting.constants'
 
 export interface SystemSettings {
   allowRegistration: boolean
@@ -34,6 +39,7 @@ export interface SystemSettings {
   storagePlanPricing: StoragePlanPricingConfigs
   managedStorageProvider: string | null
   managedStorageProviders: BuilderStorageProvider[]
+  managedStorageSecureAccess: boolean
 }
 
 export type SystemSettingValueMap = {
@@ -55,3 +61,9 @@ export type UpdateSystemSettingsInput = Partial<SystemSettings> &
   Partial<Record<BillingPlanSettingField, string | number | boolean | null | undefined>>
 
 export { type SystemSettingField } from './system-setting.constants'
+
+declare module '@afilmory/framework' {
+  interface Events {
+    'system.setting.updated': { key: SystemSettingKey; value: unknown }
+  }
+}

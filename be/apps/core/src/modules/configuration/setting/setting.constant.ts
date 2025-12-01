@@ -72,6 +72,14 @@ export const DEFAULT_SETTING_DEFINITIONS = {
     isSensitive: false,
     schema: z.string().transform((value) => value.trim()),
   },
+  'photo.storage.secureAccess': {
+    isSensitive: false,
+    schema: z
+      .string()
+      .trim()
+      .transform((value) => (value.length === 0 ? 'false' : value.toLowerCase()))
+      .pipe(z.enum(['true', 'false'])),
+  },
   [BUILDER_SYSTEM_CONFIG_SETTING_KEY]: {
     isSensitive: false,
     schema: z.string().trim(),
@@ -125,25 +133,6 @@ export const DEFAULT_SETTING_DEFINITIONS = {
   'site.social.github': {
     isSensitive: false,
     schema: z.string().trim(),
-  },
-  'site.social.rss': {
-    isSensitive: false,
-    schema: z
-      .string()
-      .trim()
-      .transform((value) => value.toLowerCase())
-      .superRefine((value, ctx) => {
-        if (value.length === 0) {
-          return
-        }
-
-        if (value !== 'true' && value !== 'false') {
-          ctx.addIssue({
-            code: z.ZodIssueCode.custom,
-            message: 'RSS toggle must be either "true" or "false"',
-          })
-        }
-      }),
   },
   'site.feed.folo.challenge.feedId': {
     isSensitive: false,

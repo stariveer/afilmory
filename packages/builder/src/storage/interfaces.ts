@@ -16,8 +16,25 @@ export interface StorageObject {
   etag?: string
 }
 
+export type StorageUploadStatus = 'start' | 'progress' | 'complete' | 'error'
+
+export type StorageUploadProgress = {
+  key: string
+  status: StorageUploadStatus
+  provider?: StorageConfig['provider']
+  size?: number
+  bytesUploaded?: number
+  totalBytes?: number
+  elapsedMs?: number
+  error?: unknown
+  metadata?: Record<string, unknown> | null
+}
+
+export type StorageUploadProgressHandler = (progress: StorageUploadProgress) => Promise<void> | void
+
 export interface StorageUploadOptions {
   contentType?: string
+  onProgress?: StorageUploadProgressHandler
 }
 
 // 存储提供商的通用接口
@@ -61,6 +78,12 @@ export interface StorageProvider {
    * 从存储中删除文件
    */
   deleteFile: (key: string) => Promise<void>
+
+  /**
+   * 删除指定前缀下的所有文件（通常对应一个“目录”）
+   * @param prefix 需要删除的目录或前缀（不需要以 / 开头）
+   */
+  deleteFolder: (prefix: string) => Promise<void>
 
   /**
    * 向存储上传文件
@@ -147,6 +170,14 @@ export type GitHubConfig = {
   token?: string
   path?: string
   useRawUrl?: boolean
+  /**
+   * Optional custom CDN domain for generated URLs.
+   * When set, URLs will use this domain instead of raw.githubusercontent.com.
+   * Useful for jsDelivr, Cloudflare CDN, or other GitHub CDN proxies.
+   * @example 'cdn.jsdelivr.net/gh/owner/repo@branch'
+   * @example 'cdn.example.com'
+   */
+  customDomain?: string
 }
 
 export type LocalConfig = {

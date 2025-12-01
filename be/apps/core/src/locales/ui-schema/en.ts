@@ -149,11 +149,6 @@ const enUiSchema = {
                 title: 'GitHub',
                 helper: 'Supports full URLs or usernames.',
               },
-              rss: {
-                title: 'Expose RSS feed',
-                description: 'Enable to publish an RSS endpoint on the public site.',
-                helper: 'Visitors can subscribe to the latest photos via RSS.',
-              },
             },
           },
         },
@@ -384,6 +379,8 @@ const enUiSchema = {
         s3: 'AWS S3 Compatible Object Storage',
         github: 'GitHub repository',
         b2: 'Backblaze B2 cloud storage',
+        cos: 'Tencent Cloud COS',
+        oss: 'Aliyun OSS',
       },
       fields: {
         s3: {
@@ -459,6 +456,12 @@ const enUiSchema = {
             label: 'Repository path',
             description: 'Optional path within the repository to limit syncing.',
             placeholder: 'public/photos',
+          },
+          'custom-domain': {
+            label: 'Custom CDN domain',
+            description: 'CDN or proxy domain used when generating public URLs.',
+            placeholder: 'cdn.jsdelivr.net/gh/owner/repo@branch',
+            helper: 'Leave empty to keep raw.githubusercontent.com URLs.',
           },
           'use-raw': {
             label: 'Use raw URL',

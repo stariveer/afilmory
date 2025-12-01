@@ -9,7 +9,7 @@ const s3CompatibleBaseSchema = z.object({
   endpoint: z.string().optional(),
   accessKeyId: z.string().optional(),
   secretAccessKey: z.string().optional(),
-  sessionToken: z.string().optional(),
+
   prefix: z.string().optional(),
   customDomain: z.string().optional(),
   excludeRegex: z.string().optional(),
@@ -46,6 +46,7 @@ const githubConfigSchema = z.object({
   branch: z.string().optional(),
   token: z.string().optional(),
   path: z.string().optional(),
+  customDomain: z.string().optional(),
   useRawUrl: z.boolean().optional(),
 })
 
