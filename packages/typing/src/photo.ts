@@ -237,10 +237,10 @@ export interface PickedExif {
   MicroVideoPresentationTimestampUs?: Tags['MicroVideoPresentationTimestampUs']
 
   // XMP keyword / region fields returned by exiftool
-  Subject?: string[]
-  Keywords?: string[]
+  Subject?: string[] | string
+  Keywords?: string[] | string
   WeightedFlatSubject?: string[]
-  HierarchicalSubject?: string[]
+  HierarchicalSubject?: string[] | string
   RegionInfo?: ExiftoolXmpRegionInfo
 }
 

@@ -316,7 +316,13 @@ function normalizeRegionType(type: string | undefined): string | undefined {
   return groupedType || normalized || undefined
 }
 
-function normalizeStringArray(input: string[] | undefined): string[] {
+function normalizeStringArray(input: string[] | string | undefined): string[] {
+  if (!input) {
+    return []
+  }
+  if (typeof input === 'string') {
+    return input.split(/[;,|]/).map(value => value.trim()).filter(Boolean)
+  }
   if (!Array.isArray(input)) {
     return []
   }

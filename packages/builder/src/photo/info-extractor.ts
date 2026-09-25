@@ -24,18 +24,38 @@ export function extractPhotoInfo(key: string, exifData?: PickedExif | null): Pho
   let views = 0
   let tags: string[] = []
 
-  // 从目录路径中提取 tags
-  const dirPathRaw = relativeKey ? path.posix.dirname(relativeKey) : path.posix.dirname(keyForParsing)
-  const dirPath = dirPathRaw === '.' || dirPathRaw === '/' ? '' : dirPathRaw
-  if (dirPath) {
-    const relativePath = dirPath.replaceAll(/^\/+|\/+$/g, '')
+  // 从目录路径中提取 tags (已禁用，用户不使用文件夹管理 tag)
+  // const dirPathRaw = relativeKey ? path.posix.dirname(relativeKey) : path.posix.dirname(keyForParsing)
+  // const dirPath = dirPathRaw === '.' || dirPathRaw === '/' ? '' : dirPathRaw
+  // if (dirPath) {
+  //   const relativePath = dirPath.replaceAll(/^\/+|\/+$/g, '')
+  //   const pathParts = relativePath.split('/').filter((part) => part.trim() !== '')
+  //   tags = pathParts.map((part) => part.trim())
+  //   if (tags.length > 0) {
+  //     log.info(`从路径提取标签：[${tags.join(', ')}]`)
+  //   }
+  // }
 
-    // 分割路径并过滤空字符串
-    const pathParts = relativePath.split('/').filter((part) => part.trim() !== '')
-    tags = pathParts.map((part) => part.trim())
+  // 尝试从 EXIF 提取标签 (Subject, Keywords, HierarchicalSubject)
+  if (exifData) {
+    const exifTags = new Set<string>()
+    const addTags = (source: string | string[] | undefined) => {
+      if (!source) return
+      if (Array.isArray(source)) {
+        source.forEach((t) => exifTags.add(t))
+      } else if (typeof source === 'string') {
+        // 处理可能的分隔符，如分号、逗号或竖线
+        source.split(/[;,|]/).forEach((t) => exifTags.add(t.trim()))
+      }
+    }
 
-    if (tags.length > 0) {
-      log.info(`从路径提取标签：[${tags.join(', ')}]`)
+    addTags(exifData.Subject)
+    addTags(exifData.Keywords)
+    addTags(exifData.HierarchicalSubject)
+
+    if (exifTags.size > 0) {
+      tags = Array.from(exifTags).filter((t) => t.trim() !== '')
+      log.info(`从 EXIF 提取标签：[${tags.join(', ')}]`)
     }
   }
 
