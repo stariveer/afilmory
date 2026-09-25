@@ -1,0 +1,59 @@
+# 静态资源缓存优化 - 长期缓存
+/assets/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/vendor/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# 缩略图缓存 - 中期缓存
+/thumbnails/*
+  Cache-Control: public, max-age=2592000
+
+# 字体文件缓存
+/*.woff2
+  Cache-Control: public, max-age=31536000, immutable
+
+/*.woff
+  Cache-Control: public, max-age=31536000, immutable
+
+# HTML 文件 - 不缓存或短期缓存，确保更新及时
+/*.html
+  Cache-Control: public, max-age=0, must-revalidate
+
+# Service Worker 文件 - 短期缓存
+/registerSW.js
+/sw.js
+/workbox-*.js
+  Cache-Control: public, max-age=0, must-revalidate
+
+# PWA 清单文件
+/manifest.webmanifest
+/site.webmanifest
+  Cache-Control: public, max-age=86400
+
+# 图标文件
+/*.ico
+/*.png
+/*.jpg
+/*.jpeg
+/*.gif
+/*.svg
+/*.webp
+/*.avif
+  Cache-Control: public, max-age=2592000
+
+# 安全头部设置
+/*
+  X-Frame-Options: DENY
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=()
+
+# 文件类型检测
+/assets/*
+  X-Content-Type-Options: nosniff
+
+# 启用压缩（Cloudflare 自动处理，但可以明确指定）
+/assets/*.js
+/assets/*.css
+  Content-Encoding: gzip
