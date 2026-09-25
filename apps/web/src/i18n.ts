@@ -11,8 +11,9 @@ i18n
   .use(LanguageDetector)
   .use(initReactI18next)
   .init({
+    lng: 'zh-CN',
     fallbackLng: {
-      default: ['en'],
+      default: ['zh-CN'],
     },
     defaultNS: 'app',
     resources,

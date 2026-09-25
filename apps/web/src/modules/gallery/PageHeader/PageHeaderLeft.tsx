@@ -16,7 +16,7 @@ export const PageHeaderLeft = () => {
     siteConfig.social && siteConfig.social.twitter
       ? resolveSocialUrl(siteConfig.social.twitter, { baseUrl: 'https://twitter.com/', stripAt: true })
       : undefined
-  const hasRss = true
+  const hasRss = false
 
   return (
     <div className="flex items-center gap-2">
