@@ -85,3 +85,5 @@ acceptance-report/
 /metadata/
 apps/mobile/metadata/
 apps/mobile/fastlane/metadata/
+
+todo.md

@@ -1,6 +1,6 @@
 # 个人维护与使用手册
-
-## 0. 同步官方上游（线性变基，定制 Commit 永远浮在最顶层）
+ 
+## 1. 同步官方上游（保持个人定制 Commit 永远置顶）
 
 ```bash
 pnpm run upstream:sync
@@ -8,20 +8,9 @@ pnpm run upstream:sync
 
 ---
 
-## 1. 软链接配置（初始化）
-
-```bash
-# dist 软链接到部署仓库（如需要）
-rm -rf apps/web/dist
-ln -s ../../../afilmory-dist ./apps/web/dist
-
-# 本地原图软链接
-ln -s ../images/public/photos ./photos
-```
-
----
-
 ## 2. 照片处理与构建流水线
+> **架构说明**：大图通过 Cloudflare R2 托管（`https://images.trainspott.in/photos`），本地原图存放于 `../images/public/photos`，无需手动建立软链接。
+
 
 ### 2.1 日常增量构建（有新照片时）
 ```bash
