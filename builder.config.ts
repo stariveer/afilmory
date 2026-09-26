@@ -7,7 +7,7 @@ export default defineBuilderConfig(() => ({
   storage: {
     provider: 'local',
     basePath: '../images/public/photos',
-    baseUrl: 'https://images.trainspott.in/photos',
+    baseUrl: 'https://images.hexi.ng/photos',
     // baseUrl: '/photos',  // 修改为本地相对路径
     // baseUrl: '/photos',  // 修改为本地相对路径
   },

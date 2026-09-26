@@ -9,7 +9,7 @@ pnpm run upstream:sync
 ---
 
 ## 2. 照片处理与构建流水线
-> **架构说明**：大图通过 Cloudflare R2 托管（`https://images.trainspott.in/photos`），本地原图存放于 `../images/public/photos`，无需手动建立软链接。
+> **架构说明**：大图通过 Cloudflare R2 托管（`https://images.hexi.ng/photos`），本地原图存放于 `../images/public/photos`，无需手动建立软链接。
 
 
 ### 2.1 日常增量构建（有新照片时）
